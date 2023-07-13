@@ -13,7 +13,7 @@ class GameCubit extends Cubit<GameState> {
 
   factory GameCubit.initial() {
     final board =
-        Board(cells: [], whiteLost: LostFigures(), blackLost: LostFigures());
+    Board(cells: [], whiteLost: LostFigures(), blackLost: LostFigures());
     board.createCells();
     board.putFigures();
 
@@ -37,7 +37,7 @@ class GameCubit extends Cubit<GameState> {
     emit(state.copyWith(
         selectedCell: newCell,
         availablePositionsHash:
-            state.board.getAvailablePositionsHash(newCell)));
+        state.board.getAvailablePositionsHash(newCell)));
   }
 
   void moveFigure(Cell toCell) async {
@@ -75,3 +75,4 @@ class GameCubit extends Cubit<GameState> {
     return GetIt.I<SettingsCubit>().state;
   }
 }
+
