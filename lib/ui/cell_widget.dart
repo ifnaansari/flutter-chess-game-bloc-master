@@ -45,7 +45,7 @@ class CellWidget extends StatelessWidget {
       child: Stack(
         children: [
           Container(
-            color: cell.isBlack ? AppColors.black : AppColors.white,
+            color: cell.isBlack ? AppColors.white : AppColors.black,
           ),
           AnimatedContainer(
             duration: const Duration(milliseconds: 300),

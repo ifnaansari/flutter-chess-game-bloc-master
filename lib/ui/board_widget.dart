@@ -34,20 +34,20 @@ class BoardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
+    final double screenHeight = MediaQuery.of(context).size.height;
+    final double boardSize = board.cells.length.toDouble();
     final double cellSize = screenWidth / boardSize;
 
     return Container(
-      decoration: const BoxDecoration(
-        border: Border(
-          top: BorderSide(color: Colors.brown, width: 16),
-          bottom: BorderSide(color: Colors.brown, width: 16),
-        ),
+
+      constraints: BoxConstraints(
+        maxWidth: cellSize * boardSize,
+        maxHeight: screenHeight * 0.8,
       ),
-      constraints: BoxConstraints(maxHeight: cellSize * boardSize),
       child: GridView.count(
         physics: const NeverScrollableScrollPhysics(), // Avoid scrolling
         padding: const EdgeInsets.all(0),
-        crossAxisCount: boardSize,
+        crossAxisCount: boardSize.toInt(),
         childAspectRatio: 1,
         children: _buildCells(context),
       ),
