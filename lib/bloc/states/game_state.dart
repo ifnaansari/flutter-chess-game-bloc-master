@@ -17,3 +17,5 @@ class GameState with _$GameState {
     required bool isAIthinking,
   }) = _GameState;
 }
+
+
