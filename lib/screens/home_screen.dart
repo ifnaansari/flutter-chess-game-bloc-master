@@ -22,7 +22,12 @@ class HomeScreen extends StatelessWidget {
       MaterialPageRoute(builder: (context) => AIDifficultySelectionScreen()),
     );
   }
-
+  void _navigateToFriendsListScreen(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => FriendsListScreen()),
+    );
+  }
   void _logout(BuildContext context) {
     // Clear user session or perform any other necessary logout operations
 
@@ -112,7 +117,7 @@ class HomeScreen extends StatelessWidget {
               ),
               SizedBox(height: 16.0),
               ElevatedButton(
-                onPressed: () => _navigateToAIDifficultySelection(context),
+                onPressed: () => _navigateToFriendsListScreen(context),
                 style: ElevatedButton.styleFrom(
                   primary: Colors.blueAccent, // Customize the button color here
                   padding: EdgeInsets.symmetric(

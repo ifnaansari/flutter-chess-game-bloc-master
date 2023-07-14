@@ -9,6 +9,7 @@ import 'package:get_it/get_it.dart';
 import 'package:flutter_chess_game/screens/victory_popup.dart';
 import 'package:flutter_chess_game/screens/defeat_popup.dart';
 
+
 class GameScreen extends StatefulWidget {
   @override
   _GameScreenState createState() => _GameScreenState();
@@ -50,8 +51,7 @@ class _GameScreenState extends State<GameScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey, // Set the background color to black
-
+      backgroundColor: AppColors.white, // Set the background color to white
       body: Stack(
         children: [
           BlocBuilder<GameCubit, GameState>(
@@ -60,6 +60,29 @@ class _GameScreenState extends State<GameScreen> {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      SizedBox(width: 16), // Add spacing
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        padding: EdgeInsets.fromLTRB(16, 16, 16, 16), // Adjust the padding
+                        child: Column(
+                          children: [
+                            Icon(Icons.person, color: Colors.black),
+                            SizedBox(height: 8), // Add spacing
+                            Text(
+                              'User-1',
+                              style: TextStyle(color: Colors.black),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                   LostFiguresWidget(figures: state.board.blackLost.figures),
                   SizedBox(height: 16), // Add spacing between widgets
                   Center(
@@ -74,6 +97,29 @@ class _GameScreenState extends State<GameScreen> {
                     ),
                   ),
                   LostFiguresWidget(figures: state.board.whiteLost.figures),
+                  SizedBox(height: 16), // Add spacing between widgets
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        padding: EdgeInsets.all(8),
+                        child: Column(
+                          children: [
+                            Icon(Icons.person, color: Colors.black),
+                            Text(
+                              'User-2',
+                              style: TextStyle(color: Colors.black),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(width: 16), // Add spacing
+                    ],
+                  ),
                 ],
               );
             },
@@ -83,7 +129,7 @@ class _GameScreenState extends State<GameScreen> {
             right: 0,
             bottom: 0,
             child: Container(
-              color: Colors.black26,
+              color: Colors.white,
               padding: EdgeInsets.symmetric(vertical: 16),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -97,7 +143,7 @@ class _GameScreenState extends State<GameScreen> {
                   IconButton(
                     icon: Icon(Icons.undo_sharp),
                     onPressed: () {
-
+                      // Handle undo button click
                     },
                   ),
                   IconButton(

@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_chess_game/screens/cart_screen.dart';
+import 'package:flutter_chess_game/screens/home_screen.dart';
+import 'package:flutter_chess_game/screens/user_account_screen.dart';
+import 'package:flutter_chess_game/screens/wallet_screen.dart';
 
 class StatsScreen extends StatefulWidget {
   @override
@@ -19,6 +23,40 @@ class _StatsScreenState extends State<StatsScreen> {
       gameStatsList.add(gameStats);
       totalGamesPlayed++;
     });
+  }
+  void _navigateToHome(BuildContext context) {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => HomeScreen()),
+    );
+  }
+
+  void _navigateToWallet(BuildContext context) {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => WalletScreen()),
+    );
+  }
+
+  void _navigateToCart(BuildContext context) {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => CartScreen()),
+    );
+  }
+
+  void _navigateToStats(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => StatsScreen()),
+    );
+  }
+
+  void _navigateToAccount(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => UserAccountScreen()),
+    );
   }
 
   @override
@@ -127,54 +165,56 @@ class _StatsScreenState extends State<StatsScreen> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.black,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.grey,
-        currentIndex: 3,
-        onTap: (index) {
-          if (index == 0) {
-            // Navigate to HomeScreen
-            Navigator.pushNamed(context, '/home');
-          } else if (index == 1) {
-            // Navigate to WalletScreen
-            Navigator.pushNamed(context, '/wallet');
-          } else if (index == 2) {
-            // Navigate to CartScreen
-            Navigator.pushNamed(context, '/cart');
-          } else if (index == 3) {
-            // Stay on StatsScreen
-          } else if (index == 4) {
-            // Navigate to AccountScreen
-            Navigator.pushNamed(context, '/account');
-          }
-        },
+        backgroundColor: Colors.blueGrey,
+        selectedItemColor: Colors.grey, // Set the selected item color
+        unselectedItemColor: Colors.grey, // Set the unselected item color
+        showSelectedLabels: false, // Hide labels for selected items
+        showUnselectedLabels: false, // Hide labels for unselected items
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Home',
+            label: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_balance_wallet),
-            label: 'Wallet',
+            label: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart),
-            label: 'Cart',
+            label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.stacked_bar_chart),
-            label: 'Stats',
+            icon: Icon(Icons.bar_chart),
+            label: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_circle),
-            label: 'Account',
+            label: '',
           ),
         ],
+        onTap: (index) {
+          switch (index) {
+            case 0:
+              _navigateToHome(context);
+              break;
+            case 1:
+              _navigateToWallet(context);
+              break;
+            case 2:
+              _navigateToCart(context);
+              break;
+            case 3:
+              _navigateToStats(context);
+              break;
+            case 4:
+              _navigateToAccount(context);
+              break;
+          }
+        },
       ),
     );
   }
 }
-
 class GameStats {
   final String opponent;
   final String outcome;
